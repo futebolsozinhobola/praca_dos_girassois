@@ -1,36 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Praça dos Girassóis - Imersivo 360 (Estável)</title>
+    <title>Praça dos Girassóis - Imersivo 360 (Com Movimento)</title>
     <meta charset="UTF-8">
     <meta name="description" content="Experiência imersiva 360° sobre a Praça dos Girassóis em Palmas-TO.">
     <!-- Importa a biblioteca A-Frame -->
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <!--
-      NOVO COMPONENTE DE TEXTO:
-      Este script (aframe-troika-text) é uma solução moderna e robusta para texto em A-Frame.
-      Ele usa fontes padrão da web e garante a renderização correta de TODOS os caracteres.
-    -->
+    <!-- Importa o componente de texto robusto -->
     <script src="https://unpkg.com/aframe-troika-text/dist/aframe-troika-text.min.js"></script>
   </head>
   <body>
     <a-scene>
-      <!-- Assets -->
+      <!--
+        Assets - Referência Local da Imagem
+        Para usar sua imagem, basta colocar o nome do arquivo no 'src'.
+        Exemplo: src="minha-foto-da-praca.jpg"
+      -->
       <a-assets>
-        <!--
-          NOVO FUNDO 360:
-          Troquei a imagem do Flickr por uma mais confiável para garantir que o fundo carregue sempre.
-        -->
-        <img id="praca-360" src="https://cdn.glitch.global/c6b24024-2035-4952-8173-9a111a4b6798/37575302426_1937f3a8b4_k.jpg?v=1728403011388" crossorigin="anonymous">
+        <img id="praca-360" src="NOME_DA_SUA_IMAGEM.jpg">
       </a-assets>
 
       <!-- Fundo Imersivo 360 -->
       <a-sky src="#praca-360" rotation="0 -110 0"></a-sky>
 
-      <!--
-        TÍTULO ADICIONADO:
-        Um título grande e centralizado foi adicionado à cena para identificação.
-      -->
+      <!-- Título Grande -->
       <a-troika-text
         value="Praça dos Girassóis"
         color="#FFFFFF"
@@ -41,12 +34,6 @@
         outline-color="#000000"
         outline-width="2%">
       </a-troika-text>
-
-      <!--
-        PAINÉIS COM TEXTO CORRIGIDO:
-        Agora usando 'a-troika-text', com uma fonte do Google (Roboto) que tem suporte completo
-        para o português. A legibilidade está garantida.
-      -->
 
       <!-- Painel 1 (Frente) -->
       <a-entity class="panel" position="0 1.6 -4" rotation="0 0 0">
@@ -95,10 +82,11 @@
 
       <!--
         CÂMERA DO USUÁRIO:
-        Com 'look-controls' ativado por padrão, permite que o usuário olhe em 360 graus
-        arrastando o mouse ou o dedo na tela.
+        A câmera usa o componente 'look-controls' para capturar os movimentos do celular
+        e permitir que o usuário olhe em 360 graus. O cursor foi removido.
       -->
-      <a-camera></a-camera>
+      <a-camera>
+      </a-camera>
     </a-scene>
   </body>
 </html>
