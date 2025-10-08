@@ -1,112 +1,102 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RA - Praça dos Girassóis (AR)</title>
+    <title>Praça dos Girassóis - Imersivo 360 (Estável)</title>
     <meta charset="UTF-8">
-    <meta name="description" content="Experiência de Realidade Aumentada sobre a Praça dos Girassóis em Palmas-TO.">
+    <meta name="description" content="Experiência imersiva 360° sobre a Praça dos Girassóis em Palmas-TO.">
     <!-- Importa a biblioteca A-Frame -->
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <!--
+      NOVO COMPONENTE DE TEXTO:
+      Este script (aframe-troika-text) é uma solução moderna e robusta para texto em A-Frame.
+      Ele usa fontes padrão da web e garante a renderização correta de TODOS os caracteres.
+    -->
+    <script src="https://unpkg.com/aframe-troika-text/dist/aframe-troika-text.min.js"></script>
   </head>
   <body>
-    <!--
-      MODIFICAÇÕES PARA REALIDADE AUMENTADA (AR):
-      1. webxr: Ativa o modo de Realidade Aumentada. Um botão "START AR" aparecerá em celulares compatíveis.
-      2. renderer="alpha: true;": Torna o fundo da cena transparente para que a câmera do celular apareça atrás.
-      3. vr-mode-ui="enabled: false": Desativa o botão de VR para focar apenas na experiência AR.
-    -->
-    <a-scene webxr="optionalFeatures: dom-overlay, hit-test;" renderer="alpha: true; colorManagement: true;" vr-mode-ui="enabled: false">
-
-      <!-- Assets - Apenas a fonte é necessária agora -->
+    <a-scene>
+      <!-- Assets -->
       <a-assets>
-        <a-asset-item id="font-pt" src="https://cdn.aframe.io/fonts/mozillavr.fnt"></a-asset-item>
+        <!--
+          NOVO FUNDO 360:
+          Troquei a imagem do Flickr por uma mais confiável para garantir que o fundo carregue sempre.
+        -->
+        <img id="praca-360" src="https://cdn.glitch.global/c6b24024-2035-4952-8173-9a111a4b6798/37575302426_1937f3a8b4_k.jpg?v=1728403011388" crossorigin="anonymous">
       </a-assets>
 
+      <!-- Fundo Imersivo 360 -->
+      <a-sky src="#praca-360" rotation="0 -110 0"></a-sky>
+
       <!--
-        Container Principal para todo o conteúdo.
-        Isso permite mover e posicionar todos os painéis e o título de uma só vez.
-        Ele está posicionado 3 metros à frente da câmera.
+        TÍTULO ADICIONADO:
+        Um título grande e centralizado foi adicionado à cena para identificação.
       -->
-      <a-entity id="content-container" position="0 1.5 -3">
+      <a-troika-text
+        value="Praça dos Girassóis"
+        color="#FFFFFF"
+        align="center"
+        font-size="0.4"
+        anchor="center"
+        position="0 2.8 -4"
+        outline-color="#000000"
+        outline-width="2%">
+      </a-troika-text>
 
-        <!-- Título Principal Flutuante -->
-        <a-entity
-          text="value: Praca dos Girasois;
-                 color: #FFFFFF;
-                 align: center;
-                 width: 6;
-                 font: mozillavr;
-                 anchor: center;"
-          position="0 1.2 0">
-           <!-- Sombra do texto para melhor legibilidade contra o fundo da câmera -->
-           <a-entity
-            text="value: Praca dos Girasois;
-                   color: #000000;
-                   align: center;
-                   width: 6;
-                   font: mozillavr;
-                   anchor: center;
-                   opacity: 0.6;"
-            position="0.02 -0.02 -0.01"></a-entity>
-        </a-entity>
+      <!--
+        PAINÉIS COM TEXTO CORRIGIDO:
+        Agora usando 'a-troika-text', com uma fonte do Google (Roboto) que tem suporte completo
+        para o português. A legibilidade está garantida.
+      -->
 
-        <!-- Painel 1 (Esquerda) -->
-        <a-entity class="panel" position="-1.5 -0.5 0">
-          <a-entity
-            geometry="primitive: plane; width: 1.4; height: 1.2"
-            material="color: #002147; opacity: 0.85; transparent: true">
-          </a-entity>
-          <a-entity
-            text="value: Centro dos Poderes\n\nAbriga as sedes dos poderes Executivo, Legislativo e Judiciario.;
-                   color: #FFFFFF;
-                   align: center;
-                   width: 1.2;
-                   wrap-count: 30;
-                   font: mozillavr;
-                   baseline: top;"
-            position="0 0.5 0.01">
-          </a-entity>
-        </a-entity>
+      <!-- Painel 1 (Frente) -->
+      <a-entity class="panel" position="0 1.6 -4" rotation="0 0 0">
+        <a-entity geometry="primitive: plane; width: 3; height: 1.8" material="color: #001f3f; opacity: 0.85; transparent: true;"></a-entity>
+        <a-troika-text
+          value="Centro dos Poderes"
+          color="#FFFFFF" align="center" font-size="0.2" anchor="center"
+          position="0 0.6 0.1">
+        </a-troika-text>
+        <a-troika-text
+          value="Abriga as sedes dos poderes Executivo, Legislativo e Judiciário do estado do Tocantins."
+          color="#EFEFEF" align="center" font-size="0.1" anchor="center" max-width="2.5"
+          position="0 0.05 0.1">
+        </a-troika-text>
+      </a-entity>
 
-        <!-- Painel 2 (Centro) -->
-        <a-entity class="panel" position="0 -0.5 0">
-          <a-entity
-            geometry="primitive: plane; width: 1.4; height: 1.2"
-            material="color: #002147; opacity: 0.85; transparent: true">
-          </a-entity>
-          <a-entity
-            text="value: Marcos Historicos\n\nPossui diversos monumentos que contam a historia do estado.;
-                   color: #FFFFFF;
-                   align: center;
-                   width: 1.2;
-                   wrap-count: 30;
-                   font: mozillavr;
-                   baseline: top;"
-            position="0 0.5 0.01">
-          </a-entity>
-        </a-entity>
+      <!-- Painel 2 (Direita) -->
+      <a-entity class="panel" position="4 1.6 0" rotation="0 -90 0">
+        <a-entity geometry="primitive: plane; width: 3; height: 1.8" material="color: #001f3f; opacity: 0.85; transparent: true;"></a-entity>
+         <a-troika-text
+          value="Marcos Históricos"
+          color="#FFFFFF" align="center" font-size="0.2" anchor="center"
+          position="0 0.6 0.1">
+        </a-troika-text>
+        <a-troika-text
+          value="A praça possui diversos monumentos importantes que contam a história do estado."
+          color="#EFEFEF" align="center" font-size="0.1" anchor="center" max-width="2.5"
+          position="0 0.05 0.1">
+        </a-troika-text>
+      </a-entity>
 
-        <!-- Painel 3 (Direita) -->
-        <a-entity class="panel" position="1.5 -0.5 0">
-          <a-entity
-            geometry="primitive: plane; width: 1.4; height: 1.2"
-            material="color: #002147; opacity: 0.85; transparent: true">
-          </a-entity>
-          <a-entity
-            text="value: Centro Geodesico\n\nA famosa Rosa dos Ventos marca o centro geodesico do Brasil.;
-                   color: #FFFFFF;
-                   align: center;
-                   width: 1.2;
-                   wrap-count: 30;
-                   font: mozillavr;
-                   baseline: top;"
-            position="0 0.5 0.01">
-          </a-entity>
-        </a-entity>
+      <!-- Painel 3 (Esquerda) -->
+      <a-entity class="panel" position="-4 1.6 0" rotation="0 90 0">
+        <a-entity geometry="primitive: plane; width: 3; height: 1.8" material="color: #001f3f; opacity: 0.85; transparent: true;"></a-entity>
+        <a-troika-text
+          value="Centro Geodésico"
+          color="#FFFFFF" align="center" font-size="0.2" anchor="center"
+          position="0 0.6 0.1">
+        </a-troika-text>
+        <a-troika-text
+          value="A famosa Rosa dos Ventos, desenhada no chão da praça, marca o centro geodésico do Brasil."
+          color="#EFEFEF" align="center" font-size="0.1" anchor="center" max-width="2.5"
+          position="0 0.05 0.1">
+        </a-troika-text>
       </a-entity>
 
       <!--
-        Câmera do Usuário.
-        Em modo AR, ela vai automaticamente usar a câmera real do celular.
+        CÂMERA DO USUÁRIO:
+        Com 'look-controls' ativado por padrão, permite que o usuário olhe em 360 graus
+        arrastando o mouse ou o dedo na tela.
       -->
       <a-camera></a-camera>
     </a-scene>
