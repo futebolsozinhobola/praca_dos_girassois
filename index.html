@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RA - Praça dos Girassóis (AR)</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Experiência de Realidade Aumentada sobre a Praça dos Girassóis em Palmas-TO.">
+    <!-- Importa a biblioteca A-Frame -->
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <!--
+      MODIFICAÇÕES PARA REALIDADE AUMENTADA (AR):
+      1. webxr: Ativa o modo de Realidade Aumentada. Um botão "START AR" aparecerá em celulares compatíveis.
+      2. renderer="alpha: true;": Torna o fundo da cena transparente para que a câmera do celular apareça atrás.
+      3. vr-mode-ui="enabled: false": Desativa o botão de VR para focar apenas na experiência AR.
+    -->
+    <a-scene webxr="optionalFeatures: dom-overlay, hit-test;" renderer="alpha: true; colorManagement: true;" vr-mode-ui="enabled: false">
+
+      <!-- Assets - Apenas a fonte é necessária agora -->
+      <a-assets>
+        <a-asset-item id="font-pt" src="https://cdn.aframe.io/fonts/mozillavr.fnt"></a-asset-item>
+      </a-assets>
+
+      <!--
+        Container Principal para todo o conteúdo.
+        Isso permite mover e posicionar todos os painéis e o título de uma só vez.
+        Ele está posicionado 3 metros à frente da câmera.
+      -->
+      <a-entity id="content-container" position="0 1.5 -3">
+
+        <!-- Título Principal Flutuante -->
+        <a-entity
+          text="value: Praca dos Girasois;
+                 color: #FFFFFF;
+                 align: center;
+                 width: 6;
+                 font: mozillavr;
+                 anchor: center;"
+          position="0 1.2 0">
+           <!-- Sombra do texto para melhor legibilidade contra o fundo da câmera -->
+           <a-entity
+            text="value: Praca dos Girasois;
+                   color: #000000;
+                   align: center;
+                   width: 6;
+                   font: mozillavr;
+                   anchor: center;
+                   opacity: 0.6;"
+            position="0.02 -0.02 -0.01"></a-entity>
+        </a-entity>
+
+        <!-- Painel 1 (Esquerda) -->
+        <a-entity class="panel" position="-1.5 -0.5 0">
+          <a-entity
+            geometry="primitive: plane; width: 1.4; height: 1.2"
+            material="color: #002147; opacity: 0.85; transparent: true">
+          </a-entity>
+          <a-entity
+            text="value: Centro dos Poderes\n\nAbriga as sedes dos poderes Executivo, Legislativo e Judiciario.;
+                   color: #FFFFFF;
+                   align: center;
+                   width: 1.2;
+                   wrap-count: 30;
+                   font: mozillavr;
+                   baseline: top;"
+            position="0 0.5 0.01">
+          </a-entity>
+        </a-entity>
+
+        <!-- Painel 2 (Centro) -->
+        <a-entity class="panel" position="0 -0.5 0">
+          <a-entity
+            geometry="primitive: plane; width: 1.4; height: 1.2"
+            material="color: #002147; opacity: 0.85; transparent: true">
+          </a-entity>
+          <a-entity
+            text="value: Marcos Historicos\n\nPossui diversos monumentos que contam a historia do estado.;
+                   color: #FFFFFF;
+                   align: center;
+                   width: 1.2;
+                   wrap-count: 30;
+                   font: mozillavr;
+                   baseline: top;"
+            position="0 0.5 0.01">
+          </a-entity>
+        </a-entity>
+
+        <!-- Painel 3 (Direita) -->
+        <a-entity class="panel" position="1.5 -0.5 0">
+          <a-entity
+            geometry="primitive: plane; width: 1.4; height: 1.2"
+            material="color: #002147; opacity: 0.85; transparent: true">
+          </a-entity>
+          <a-entity
+            text="value: Centro Geodesico\n\nA famosa Rosa dos Ventos marca o centro geodesico do Brasil.;
+                   color: #FFFFFF;
+                   align: center;
+                   width: 1.2;
+                   wrap-count: 30;
+                   font: mozillavr;
+                   baseline: top;"
+            position="0 0.5 0.01">
+          </a-entity>
+        </a-entity>
+      </a-entity>
+
+      <!--
+        Câmera do Usuário.
+        Em modo AR, ela vai automaticamente usar a câmera real do celular.
+      -->
+      <a-camera></a-camera>
+    </a-scene>
+  </body>
+</html>
+
